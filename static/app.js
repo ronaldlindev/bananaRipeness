@@ -12,6 +12,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
 
 // When Capture Clicked
 button.addEventListener('click', async () => {
+  prediction.textContent = 'Processing image...';
   try {
     const context = photo.getContext('2d');
     context.drawImage(video, 0, 0, photo.width, photo.height);
@@ -24,11 +25,12 @@ button.addEventListener('click', async () => {
       method: 'POST',
       body: JSON.stringify({imageData: photoData})
     });
-  
     if (response.ok) {
       const data = await response.json();
+      console.log("nice")
       let ripeness = translateRipeness(data.class);
-      prediction.textContent = 'Predicted Ripeness: ${ripeness}';
+      console.log(data.class)
+      prediction.textContent = 'Predicted Ripeness: ' + ripeness;
     } else {
       throw new Error('API call failed: ${response.status}');
     }
@@ -48,6 +50,6 @@ button.addEventListener('click', async () => {
         return "Rotten";
     }
   }
-  prediction.textContent = 'Processing image...';
+
 });
 
