@@ -11,25 +11,43 @@ navigator.mediaDevices.getUserMedia({ video: true })
   .catch(err => console.error(err));
 
 // When Capture Clicked
-button.addEventListener('click', () => {
-  const context = photo.getContext('2d');
-  context.drawImage(video, 0, 0, photo.width, photo.height);
+button.addEventListener('click', async () => {
+  try {
+    const context = photo.getContext('2d');
+    context.drawImage(video, 0, 0, photo.width, photo.height);
+  
+    const photoData = photo.toDataURL('image/jpeg');
+    console.log('Image data:', photoData); // For debugging
+  
+  
+    const response = await fetch('/predict', {
+      method: 'POST',
+      body: JSON.stringify({imageData: photoData})
+    });
+  
+    if (response.ok) {
+      const data = await response.json();
+      let ripeness = translateRipeness(data.class);
+      prediction.textContent = 'Predicted Ripeness: ${ripeness}';
+    } else {
+      throw new Error('API call failed: ${response.status}');
+    }
+  } catch (error) {
+    prediction.textContent = 'Image error: please try again'
+  }
 
-  const imageData = photo.toDataURL('image/jpeg');
-  console.log('Image data:', imageData); // For debugging
-
-  // Send image data to Python API (replace with your API endpoint and logic)
-  // fetch('/your-api-endpoint', {
-  //   method: 'POST',
-  //   body: JSON.stringify({ imageData })
-  // })
-  // .then(response => response.json())
-  // .then(data => {
-  //   prediction.textContent = `Predicted object: ${data.class}`;
-  // })
-  // .catch(err => console.error(err));
-
-  // Placeholder: Display a message while waiting for API response
+  function translateRipeness(val) {
+    switch(val) {
+      case 0:
+        return "Unripe";
+      case 1:
+        return "Ripe";
+      case 2:
+        return "Overripe";
+      case 3: 
+        return "Rotten";
+    }
+  }
   prediction.textContent = 'Processing image...';
 });
 
