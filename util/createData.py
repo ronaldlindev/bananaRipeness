@@ -5,19 +5,29 @@ from imageProcessing import process
 import random
 import numpy as np
 import os
+os.chdir(r'C:\Users\YouConfusedYet\Desktop\bananaRipeness')
+path = 'util/data/test/'
+# train
+images = []
+labels = [] 
+for fileName in os.listdir(path + r"unripe/"):
+    images.append(process(path + r'unripe/' + fileName))
+    labels.append(0)
 
-f = open(r"C:\Users\YouConfusedYet\Downloads\archive\banana-ripening-dataset.coco\Banco de dados de graus de maturacao de bananas.v2-data-set-maturacao2023-03-17.coco\labeled banana images\_annotations.coco.json")
+for fileName in os.listdir(path + r"ripe/"):
+    images.append(process(path + r'ripe/' + fileName))
+    labels.append(1)
 
-data = json.load(f) ## has info liscences, categories, images, annotations
+for fileName in os.listdir(path + r"overripe/"):
+    images.append(process(path + r'overripe/' + fileName))
+    labels.append(2)
 
-idToImage = {ele['id'] : ele['file_name'] for ele in data['images']}
-idToLabel = {ele['id'] : ele['category_id'] for ele in data['annotations']}
+for fileName in os.listdir(path + r"rotten/"):
+    images.append(process(path + r'rotten/' + fileName))
+    labels.append(3)
+images = np.array(images)
+labels = np.array(labels)
+os.chdir(r'C:\Users\YouConfusedYet\Desktop\bananaRipeness\util\data')
 
-print(data["annotations"][1])
-
-s = set()
-for ele in idToLabel:
-    if idToLabel[ele] not in s:
-        s.add(idToLabel[ele])
-
-print(s)
+np.save("test_images.npy", images)
+np.save("test_labels.npy", labels)
