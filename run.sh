@@ -1,2 +1,3 @@
-uvicorn main:app --reload
+ls
+
 run flask
