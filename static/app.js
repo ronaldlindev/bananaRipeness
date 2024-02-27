@@ -27,7 +27,6 @@ button.addEventListener('click', async () => {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log("nice")
       let ripeness = translateRipeness(data.class);
       console.log(data.class)
       prediction.textContent = 'Predicted Ripeness: ' + ripeness;

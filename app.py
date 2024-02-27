@@ -6,7 +6,7 @@ from tensorflow import keras
 from util.imageProcessing import process 
 import json 
 
-MODEL_PATH = r'models/model1'
+MODEL_PATH = r'bananaripeness/models/model1'
 
 model = tf.keras.models.load_model(MODEL_PATH)
 
