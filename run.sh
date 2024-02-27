@@ -1,3 +1,3 @@
 ls
 
-run flask
+flask run
