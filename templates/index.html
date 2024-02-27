@@ -10,7 +10,12 @@
 <body>
     <h1 id="title">Banana🍌Ripemeter</h1>
   <div class="container">
-    <video id="video" playinline autoplay></video>
+
+    <div id="video-container">
+      <video id="video" playinline autoplay></video>
+      <img id="overlay" src="/static/fruit_banana_outline-512.webp"/>
+    </div>
+
     <canvas id="photo"></canvas>
     <button id="capture">Capture</button>
     <p id="prediction"></p>

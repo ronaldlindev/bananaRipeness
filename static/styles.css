@@ -5,14 +5,45 @@ body {
 }
   
 .container {
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 3px;
 }
+
+#video-container {
+    position: relative;
+    width: 320px;
+    height: 240px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
   
-#video, #photo {
+#overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    opacity: .3;
+}
+  
+#photo {
     width: 320px;
     height: 240px;
     border: 1px solid #080808;
@@ -33,3 +64,6 @@ button {
     font-size: 18px;
     font-weight: bold;
 }
+
+
+  
