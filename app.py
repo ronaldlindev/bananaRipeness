@@ -16,11 +16,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     base64_str = json.loads((request.get_data()))["imageData"]
-    # parse out header
     image = base64.b64decode(base64_str[23:], validate=True)
     file = "my_image.jpg"
     with open(file, "wb") as f:
