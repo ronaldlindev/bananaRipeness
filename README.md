@@ -1,4 +1,29 @@
-# bananaRipeness
-A tool to help poor college students figure out when to eat bananas.
 
-# todo update README
+## Banana Ripeness Classification 
+
+This project demonstrates a fruit ripeness classification system, specifically focusing on bananas. It utilizes:
+
+TensorFlow: A machine learning library for creating the classification model.
+Flask: A lightweight web framework for building the REST API.
+HTML & CSS: For developing the user interface to interact with the API.
+
+## Project Overview
+
+This project aims to classify the ripeness of a banana based on an image. The user interacts through a web interface, uploads an image of a banana, and receives the predicted ripeness category (e.g., unripe, ripe, overripe).
+
+## Installation 
+
+Clone the repository
+``` 
+https://github.com/RonaldLinDev/bananaRipeness
+```
+Install dependencies 
+```
+pip install -r requirements.txt
+```
+Run the Server Locally
+```
+flask run
+```
+(Hosted server for the web service has been discontinued due to server costs)
+Previously hosted here: https://bananaripeness.onrender.com 
