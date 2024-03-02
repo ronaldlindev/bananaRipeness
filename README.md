@@ -1,4 +1,4 @@
-!(static/IMG_7632.jpeg)
+![unripe bananas at school grocery store](static/IMG_7632.jpeg)
 
 # Banana Ripeness Classification
 
