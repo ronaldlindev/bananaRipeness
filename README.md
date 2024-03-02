@@ -31,3 +31,4 @@ The web application will ask for access to the user's webcam. Centering an image
 (Image Classification API is currently down due to server costs)
 Hosted here: https://bananaripeness.onrender.com 
 
+## Example
