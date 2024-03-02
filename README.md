@@ -1,5 +1,4 @@
-
-## Banana Ripeness Classification 
+# Banana Ripeness Classification 
 
 This project demonstrates a fruit ripeness classification system, specifically focusing on bananas. It utilizes:
 
@@ -9,13 +8,13 @@ HTML & CSS: For developing the user interface to interact with the API.
 
 ## Project Overview
 
-This project aims to classify the ripeness of a banana based on an image. The user interacts through a web interface, uploads an image of a banana, and receives the predicted ripeness category (e.g., unripe, ripe, overripe).
+This project aims to classify the ripeness of a banana based on an image. The user interacts through a web interface, uploads an image of a banana, and receives the predicted ripeness category (e.g., unripe, ripe, overripe, and rotten).
 
 ## Installation 
 
 Clone the repository
 ``` 
-https://github.com/RonaldLinDev/bananaRipeness
+git clone https://github.com/RonaldLinDev/bananaRipeness
 ```
 Install dependencies 
 ```
@@ -25,5 +24,12 @@ Run the Server Locally
 ```
 flask run
 ```
+
+## Usage 
+
+The web application will ask for access to the user's webcam. Centering an image of a banana on the webcam and clicking 'Capture' will cause the model to output its perdicted ripeness classification.
+
+
 (Hosted server for the web service has been discontinued due to server costs)
 Previously hosted here: https://bananaripeness.onrender.com 
+
