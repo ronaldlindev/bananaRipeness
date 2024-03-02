@@ -8,6 +8,14 @@ This project classifies the ripeness of a banana based on an image. Bananas are 
 
 Relevant Technologies: Tensorflow, Flask, sci-kit-image
 
+## Example
+![usage](static/image.png)
+## Dataset
+
+This project's CNN is trained using a dataset from Roboflow.
+
+You can access the dataset [here](https://universe.roboflow.com/roboflow-universe-projects/banana-ripeness-classification).
+
 ## Installation 
 
 Clone the repository
@@ -27,9 +35,5 @@ flask run
 
 The web application will ask for access to the user's webcam. Centering an image of a banana on the webcam and clicking 'Capture' will cause the model to output its predicted ripeness classification.
 
-
 (Image Classification API is currently down due to server costs)
 Hosted here: https://bananaripeness.onrender.com 
-
-## Example
-![usage](static/image.png)
