@@ -32,3 +32,4 @@ The web application will ask for access to the user's webcam. Centering an image
 Hosted here: https://bananaripeness.onrender.com 
 
 ## Example
+![usage](static/image.png)
