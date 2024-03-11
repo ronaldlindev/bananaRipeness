@@ -4,13 +4,16 @@ import tensorflow as tf
 import numpy as np
 from tensorflow import keras
 from util.imageProcessing import process 
+from flask_cors import CORS, cross_origin
 import json 
 
 MODEL_PATH = r'models/model1'
 
 model = tf.keras.models.load_model(MODEL_PATH)
-
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 
 @app.route('/', methods=['POST'])
@@ -29,7 +32,6 @@ def predict():
         print(prediction)
         prediction = np.argmax(prediction[0])
         response = jsonify({"class" : int(prediction)})
-        response.headers.add('Access-Control-Allow-Origin', '*')
     return response
          
    
