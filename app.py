@@ -15,18 +15,16 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
+@app.route('/home')
+def render_home():
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def predict():
     base64_str = json.loads((request.get_data()))["imageData"]
-    print("base64 loaded")
     image = base64.b64decode(base64_str[23:], validate=True)
-    print(f"decoded:  {image} ")
     file = np.array([process(image)])
-    print("processed")
     prediction = model.predict(file)
-    print(prediction)
     prediction = np.argmax(prediction[0])
     response = jsonify({"class" : int(prediction)})
     return response

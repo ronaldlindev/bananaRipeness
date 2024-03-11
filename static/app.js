@@ -35,7 +35,7 @@ button.addEventListener('click', async () => {
     const photoData = photo.toDataURL('image/jpeg');
     console.log('Image data:', photoData); 
 
-    const response = await fetch('/predict', {
+    const response = await fetch('/', {
       method: 'POST',
       body: JSON.stringify({imageData: photoData})
     });
