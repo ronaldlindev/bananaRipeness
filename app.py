@@ -22,7 +22,7 @@ def predict():
     base64_str = json.loads((request.get_data()))["imageData"]
     print("base64 loaded")
     image = base64.b64decode(base64_str[23:], validate=True)
-    print("decoded")
+    print(f"decoded:  {image} ")
     file = np.array([process(image)])
     print("processed")
     prediction = model.predict(file)
