@@ -10,6 +10,7 @@ import json
 MODEL_PATH = r'models/model1'
 
 model = tf.keras.models.load_model(MODEL_PATH)
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -22,16 +23,12 @@ def predict():
     print("base64 loaded")
     image = base64.b64decode(base64_str[23:], validate=True)
     print("decoded")
-    file = "my_image.jpg"
-    with open(file, "wb") as f:
-        f.write(image)
-        print("file written")
-        file = np.array([process(file)])
-        print(file.shape)
-        prediction = model.predict(file)
-        print(prediction)
-        prediction = np.argmax(prediction[0])
-        response = jsonify({"class" : int(prediction)})
+    file = np.array([process(image)])
+    print("processed")
+    prediction = model.predict(file)
+    print(prediction)
+    prediction = np.argmax(prediction[0])
+    response = jsonify({"class" : int(prediction)})
     return response
          
    
