@@ -3,24 +3,38 @@ const photo = document.getElementById('photo');
 const button = document.getElementById('capture');
 const prediction = document.getElementById('prediction');
 
-// Request Camera access
-navigator.mediaDevices.getUserMedia({ video: true })
-  .then(stream => {
-    video.srcObject = stream;
-  })
-  .catch(err => console.error(err));
+// Original code from https://kmtabish.medium.com/access-devices-camera-from-static-html-page-using-javascript-camera-api-7b0117f4e2db
+var ctx;
+if(navigator && navigator.mediaDevices){
+    const options = { audio: false, video: { facingMode: "user", width: 300, height: 300  } }
+    navigator.mediaDevices.getUserMedia(options)
+    .then(function(stream) {
+        video = document.querySelector('video');
+        video.srcObject = stream;
+        video.onloadedmetadata = function(e) {
+          video.play();
+        };
+        ctx = photo.getContext('2d');
+    })
+    .catch(function(err) {
+        console.log('err');
+    });
+
+} else {
+    console.log("camera API is not supported by your browser")
+}
+
 
 // When Capture Clicked
 button.addEventListener('click', async () => {
   prediction.textContent = 'Processing image...';
   try {
-    const context = photo.getContext('2d');
-    context.drawImage(video, 0, 0, photo.width, photo.height);
+    ctx = photo.getContext('2d');
+    ctx.drawImage(video, 0, 0, photo.width, photo.height);
   
     const photoData = photo.toDataURL('image/jpeg');
-    console.log('Image data:', photoData); // For debugging
-  
-  
+    console.log('Image data:', photoData); 
+
     const response = await fetch('/predict', {
       method: 'POST',
       body: JSON.stringify({imageData: photoData})
