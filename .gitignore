@@ -5,3 +5,4 @@ build/
 my_image.jpg__pycache__
 util/__pycache__
 my_image.jpg
+test.py

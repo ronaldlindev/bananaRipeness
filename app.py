@@ -28,8 +28,9 @@ def predict():
         prediction = model.predict(file)
         print(prediction)
         prediction = np.argmax(prediction[0])
-    return jsonify({"class" : int(prediction)})
-    
+        response = jsonify({"class" : int(prediction)})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
          
    
   
